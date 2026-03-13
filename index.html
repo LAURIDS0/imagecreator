@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Item Creator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1>Item Creator</h1>
+      <div class="controls">
+        <label for="gridSize">Pixels</label>
+        <select id="gridSize">
+          <option value="8">8 × 8</option>
+          <option value="16">16 × 16</option>
+          <option value="32" selected>32 × 32</option>
+          <option value="64">64 × 64</option>
+          <option value="128">128 × 128</option>
+        </select>
+
+        <button id="pencilBtn" type="button">Pencil</button>
+        <button id="eraserBtn" type="button">Eraser</button>
+        <button id="fillBtn" type="button">Fill Bucket</button>
+        <button id="fillEraserBtn" type="button">Fill Eraser</button>
+        <button id="undoBtn" type="button">Undo</button>
+        <button id="importBtn" type="button">Insert Image</button>
+        <button id="clearBtn" type="button">Clear</button>
+        <button id="downloadBtn" type="button">Download image as PNG</button>
+        <input id="importInput" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg" hidden />
+      </div>
+    </header>
+
+    <section class="workspace">
+      <div class="canvas-wrap">
+        <canvas id="pixelCanvas" width="32" height="32" aria-label="Pixel canvas"></canvas>
+      </div>
+
+      <aside class="palette-panel">
+        <div class="selected-row">
+          <span>Selected</span>
+          <div id="selectedColor" class="selected-color"></div>
+          <code id="selectedHex">#000000</code>
+        </div>
+        <div id="palette" class="palette" aria-label="256 color palette"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="cropOverlay" class="crop-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cropTitle">
+    <div class="crop-modal">
+      <h2 id="cropTitle">Select Square from Image</h2>
+      <p class="crop-help">Move the square to select an area, choose pixel size, and insert.</p>
+      <div class="crop-canvas-wrap">
+        <canvas id="cropCanvas" aria-label="Image crop preview"></canvas>
+      </div>
+      <div class="crop-controls">
+        <label for="cropScale">Square Size</label>
+        <input id="cropScale" type="range" min="20" max="100" step="1" value="100" />
+
+        <label for="cropOutputSize">Output Pixels</label>
+        <select id="cropOutputSize">
+          <option value="8">8 × 8</option>
+          <option value="16">16 × 16</option>
+          <option value="32" selected>32 × 32</option>
+          <option value="64">64 × 64</option>
+          <option value="128">128 × 128</option>
+        </select>
+
+        <button id="cropCancelBtn" type="button">Cancel</button>
+        <button id="cropApplyBtn" type="button">Insert</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
