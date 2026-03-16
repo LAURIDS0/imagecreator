@@ -41,7 +41,7 @@ Item Creator er en lille HTML/CSS/JavaScript app, hvor du kan tegne pixel-art di
 
 ## Kør lokalt
 
-Du kan åbne siden direkte i browseren via `index.html`, eller starte en lokal server:
+Du kan åbne siden direkte i browseren via `https://laurids0.github.io/imagecreator/`, eller starte en lokal server:
 
 ```bash
 python -m http.server 8765
