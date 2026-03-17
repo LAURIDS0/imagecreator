@@ -452,6 +452,26 @@ function importPngFile(file) {
   reader.readAsDataURL(file);
 }
 
+function importImageFromClipboard(event) {
+  const clipboardItems = event.clipboardData?.items;
+  if (!clipboardItems?.length) return;
+
+  for (const item of clipboardItems) {
+    if (!item.type.startsWith('image/')) {
+      continue;
+    }
+
+    const file = item.getAsFile();
+    if (!file) {
+      continue;
+    }
+
+    event.preventDefault();
+    importPngFile(file);
+    return;
+  }
+}
+
 function downloadPNG() {
   const exportCanvas = document.createElement('canvas');
   exportCanvas.width = gridSize;
@@ -606,6 +626,8 @@ window.addEventListener('keydown', (event) => {
     undo();
   }
 });
+
+window.addEventListener('paste', importImageFromClipboard);
 
 gridSizeEl.addEventListener('change', () => {
   resizeGrid(Number(gridSizeEl.value));
